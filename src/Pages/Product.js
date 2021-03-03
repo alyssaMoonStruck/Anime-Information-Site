@@ -6,6 +6,10 @@ function Product(){
 
     const [product, setProduct] = useState(null)
     const [day, setDay] = useState('monday')
+    function onChange(e){
+        setDay(e.target.value)
+        
+    }
     
     useEffect(() => {
 
@@ -25,6 +29,15 @@ function Product(){
     if(product){ 
         return (
             <div>
+                <select onChange={onChange} value={day}>
+                    <option value="monday">Monday</option>
+                    <option value="tuesday">Tuesday</option>
+                    <option value="wednesday">Wednesday</option>
+                    <option value="thursday">Thursday</option>
+                    <option value="friday">Friday</option>
+                    <option value="saturday">Saturday</option>
+                    <option value="sunday">Sunday</option>
+                </select>
                 <h1>{product.name}</h1>
                 {product.map(item => 
                 <div>
