@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-function Product(){
-    const url = 'https://jikan1.p.rapidapi.com/schedule/monday'
 
-    const [product, setProduct] = useState(null)
+function Product(){
+    const [product, setProduct] = useState([])
     const [day, setDay] = useState('monday')
     function onChange(e){
         setDay(e.target.value)
-        
     }
     
     useEffect(() => {
@@ -26,9 +24,8 @@ function Product(){
         })
     }, [day])
 
-    if(product){ 
         return (
-            <div>
+            <>
                 <select onChange={onChange} value={day}>
                     <option value="monday">Monday</option>
                     <option value="tuesday">Tuesday</option>
@@ -38,12 +35,13 @@ function Product(){
                     <option value="saturday">Saturday</option>
                     <option value="sunday">Sunday</option>
                 </select>
-                <h1>{product.name}</h1>
+                <div className="container">
                 {product.map(item => 
-                <div>
+                <div className="item">
                     <img src={item.image_url}/>
-                    <p>
-                    {item.title} 
+                    <p className="sections">
+                    <div className="title">{item.title}</div>
+                    <div className="syn">{item.synopsis}</div>
                     {item.type} 
                     {item.score} 
                     {item.airing_start} 
@@ -52,17 +50,12 @@ function Product(){
                     {item.licensors} 
                     {item.kids} 
                     {item.r18} 
-                    {item.synopsis}
                     </p>
                 </div>
                 )}
             </div>
-    )
-}
-
-return (
-    <div></div>
-    )
+            </>
+        )
 }
 
 export default Product

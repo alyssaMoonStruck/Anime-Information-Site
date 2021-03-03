@@ -4,8 +4,8 @@ import Product from './Pages/Product'
 
 function App() {
   return (
-    <div>
-    <Home />
+    <div className='content'>
+    {/* <Home /> */}
     <Product />
     </div>
   );
