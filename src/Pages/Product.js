@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import moment from 'moment'
 
 
 function Product(){
@@ -26,6 +27,7 @@ function Product(){
 
         return (
             <>
+            <div className='days'>
                 <select onChange={onChange} value={day}>
                     <option value="monday">Monday</option>
                     <option value="tuesday">Tuesday</option>
@@ -35,23 +37,31 @@ function Product(){
                     <option value="saturday">Saturday</option>
                     <option value="sunday">Sunday</option>
                 </select>
+                </div>
                 <div className="container">
                 {product.map(item => 
-                <div className="item">
-                    <img src={item.image_url}/>
-                    <p className="sections">
-                    <div className="title">{item.title}</div>
-                    <div className="syn">{item.synopsis}</div>
-                    {item.type} 
-                    {item.score} 
-                    {item.airing_start} 
-                    {item.episodes} 
-                    {item.source} 
-                    {item.licensors} 
-                    {item.kids} 
-                    {item.r18} 
-                    </p>
-                </div>
+                    <div className="item">
+                        <p className="sections">
+                        <div className="card">
+                            <div className="title">{item.title}</div>
+                            <img className="cover" src={item.image_url}/>
+                            <div className="syn">
+                            {item.synopsis.substring(0,150)}....
+                            
+                            <div className="info">
+                            <div>{item.type}</div> 
+                            <div>{item.score} </div>
+                            <div>{moment(item.airing_start).format("dddd, MMMM Do YYYY")}</div>
+                            <div>{item.episodes}</div> 
+                            <div>{item.source} </div>
+                            <div>{item.licensors}</div>
+                            <div>{item.kids}</div> 
+                            <div>{item.r18}</div>
+                            </div>
+                            </div>
+                        </div>
+                        </p>
+                    </div>
                 )}
             </div>
             </>

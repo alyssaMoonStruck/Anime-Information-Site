@@ -5,7 +5,7 @@ import Product from './Pages/Product'
 function App() {
   return (
     <div className='content'>
-    {/* <Home /> */}
+    <Home />
     <Product />
     </div>
   );
